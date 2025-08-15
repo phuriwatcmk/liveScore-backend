@@ -12,6 +12,16 @@ A modern football/soccer live score backend API built with [Hono](https://hono.d
 - **League Standings**: League table and standings
 - **News**: Latest football news and updates
 
+## API Documentation
+
+### Swagger UI
+Access the interactive API documentation at: `/docs`
+
+### OpenAPI Specification
+Get the OpenAPI JSON specification at: `/api/openapi.json`
+
+📖 **For detailed API documentation, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)**
+
 ## API Endpoints
 
 ### Match Info

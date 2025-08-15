@@ -1,5 +1,7 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import { swaggerUI } from '@hono/swagger-ui';
+import { swaggerSpec } from './swagger.js';
 import matchRoutes from './routes/match.js';
 import h2hRoutes from './routes/h2h.js';
 import teamRoutes from './routes/team.js';
@@ -13,10 +15,18 @@ app.use('*', cors({
   allowHeaders: ['Content-Type', 'Authorization'],
 }));
 
+// Swagger UI
+app.get('/docs', swaggerUI({ url: '/api/openapi.json' }));
+app.get('/api/openapi.json', (c) => {
+  return c.json(swaggerSpec);
+});
+
 app.get('/', (c) => {
   return c.json({
     message: 'LiveScore Backend API',
     version: '1.0.0',
+    documentation: '/docs',
+    openapi: '/api/openapi.json',
     endpoints: {
       match: '/api/match/:id',
       h2h: '/api/h2h/:homeTeamId/:awayTeamId',

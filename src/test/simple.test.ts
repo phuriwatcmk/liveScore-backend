@@ -12,6 +12,8 @@ describe('LiveScore API Simple Tests', () => {
       const data = await res.json() as any;
       expect(data.message).toBe('LiveScore Backend API');
       expect(data.version).toBe('1.0.0');
+      expect(data.documentation).toBe('/docs');
+      expect(data.openapi).toBe('/api/openapi.json');
     });
 
     it('should return health status', async () => {
@@ -90,6 +92,28 @@ describe('LiveScore API Simple Tests', () => {
       const data = await res.json() as any;
       expect(data.success).toBe(true);
       expect(data.data.id).toBe(1);
+    });
+  });
+
+  describe('Documentation Endpoints', () => {
+    it('should return OpenAPI specification', async () => {
+      const req = new Request('http://localhost/api/openapi.json');
+      const res = await app.request(req);
+      
+      expect(res.status).toBe(200);
+      
+      const data = await res.json() as any;
+      expect(data.openapi).toBe('3.0.0');
+      expect(data.info.title).toBe('LiveScore Backend API');
+      expect(data.info.version).toBe('1.0.0');
+    });
+
+    it('should serve Swagger UI', async () => {
+      const req = new Request('http://localhost/docs');
+      const res = await app.request(req);
+      
+      expect(res.status).toBe(200);
+      expect(res.headers.get('content-type')).toContain('text/html');
     });
   });
 });

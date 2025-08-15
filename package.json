@@ -14,7 +14,8 @@
     "vercel-build": "npm run build"
   },
   "dependencies": {
-    "hono": "^4.4.0"
+    "hono": "^4.4.0",
+    "@hono/swagger-ui": "^0.2.1"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
