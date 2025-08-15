@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import type { H2HRecord, Match } from '../types/index.js';
+import type { Match } from '../types/index.js';
 
 const h2hRoutes = new Hono();
 
@@ -130,63 +130,6 @@ const mockH2HMatches: Match[] = [
     }
   }
 ];
-
-h2hRoutes.get('/:homeTeamId/:awayTeamId', (c) => {
-  const homeTeamId = parseInt(c.req.param('homeTeamId'));
-  const awayTeamId = parseInt(c.req.param('awayTeamId'));
-  const limit = parseInt(c.req.query('limit') || '10');
-
-  if (isNaN(homeTeamId) || isNaN(awayTeamId)) {
-    return c.json({ error: 'Invalid team IDs' }, 400);
-  }
-
-  const h2hMatches = mockH2HMatches
-    .filter(match => 
-      (match.homeTeam.id === homeTeamId && match.awayTeam.id === awayTeamId) ||
-      (match.homeTeam.id === awayTeamId && match.awayTeam.id === homeTeamId)
-    )
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, limit);
-
-  let homeWins = 0;
-  let awayWins = 0;
-  let draws = 0;
-
-  h2hMatches.forEach(match => {
-    if (match.score.home !== null && match.score.away !== null) {
-      if (match.score.home > match.score.away) {
-        if (match.homeTeam.id === homeTeamId) {
-          homeWins++;
-        } else {
-          awayWins++;
-        }
-      } else if (match.score.home < match.score.away) {
-        if (match.awayTeam.id === homeTeamId) {
-          homeWins++;
-        } else {
-          awayWins++;
-        }
-      } else {
-        draws++;
-      }
-    }
-  });
-
-  const h2hRecord: H2HRecord = {
-    matches: h2hMatches,
-    stats: {
-      total: h2hMatches.length,
-      homeWins,
-      awayWins,
-      draws
-    }
-  };
-
-  return c.json({
-    success: true,
-    data: h2hRecord
-  });
-});
 
 h2hRoutes.get('/fixture/:fixture_id', (c) => {
   const fixtureId = parseInt(c.req.param('fixture_id'));

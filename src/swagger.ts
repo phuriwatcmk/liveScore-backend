@@ -45,7 +45,7 @@ export const swaggerSpec = {
                         match: { type: "string", example: "/api/match/:id" },
                         h2h: {
                           type: "string",
-                          example: "/api/h2h/:homeTeamId/:awayTeamId",
+                          example: "/api/h2h/fixture/:fixture_id",
                         },
                         teamStats: {
                           type: "string",
@@ -184,53 +184,44 @@ export const swaggerSpec = {
         },
       },
     },
-    "/api/h2h/{homeTeamId}/{awayTeamId}": {
+    "/api/h2h/fixture/{fixture_id}": {
       get: {
-        summary: "Get head-to-head data",
-        description: "Retrieve historical matchup data between two teams",
+        summary: "Get match data by fixture ID",
+        description: "Retrieve detailed match information using fixture ID",
         parameters: [
           {
-            name: "homeTeamId",
+            name: "fixture_id",
             in: "path",
             required: true,
-            description: "Home team ID",
+            description: "Fixture ID",
             schema: {
               type: "integer",
-            },
-          },
-          {
-            name: "awayTeamId",
-            in: "path",
-            required: true,
-            description: "Away team ID",
-            schema: {
-              type: "integer",
-            },
-          },
-          {
-            name: "limit",
-            in: "query",
-            description: "Limit number of matches returned",
-            required: false,
-            schema: {
-              type: "integer",
-              default: 10,
             },
           },
         ],
         responses: {
           "200": {
-            description: "Head-to-head data",
+            description: "Match data",
             content: {
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/H2HResponse",
+                  $ref: "#/components/schemas/MatchResponse",
                 },
               },
             },
           },
           "400": {
-            description: "Invalid team IDs",
+            description: "Invalid fixture ID",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+          "404": {
+            description: "Match not found",
             content: {
               "application/json": {
                 schema: {
@@ -601,6 +592,7 @@ export const swaggerSpec = {
         type: "object",
         properties: {
           id: { type: "integer", example: 1 },
+          fixture_id: { type: "integer", example: 1001 },
           date: {
             type: "string",
             format: "date-time",
