@@ -1,740 +1,790 @@
 export const swaggerSpec = {
-  openapi: '3.0.0',
+  openapi: "3.0.0",
   info: {
-    title: 'LiveScore Backend API',
-    version: '1.0.0',
-    description: 'A comprehensive football/soccer live score API built with Hono',
+    title: "LiveScore Backend API",
+    version: "1.0.0",
+    description:
+      "A comprehensive football/soccer live score API built with Hono",
     contact: {
-      name: 'API Support',
-      email: 'support@livescore.com'
-    }
+      name: "API Support",
+      email: "support@livescore.com",
+    },
   },
   servers: [
     {
-      url: 'http://localhost:3000',
-      description: 'Development server'
+      url: "http://localhost:3000",
+      description: "Development server",
     },
     {
-      url: 'https://your-project.vercel.app',
-      description: 'Production server'
-    }
+      url: "https://live-score-backend.vercel.app",
+      description: "Production server",
+    },
   ],
   paths: {
-    '/': {
+    "/": {
       get: {
-        summary: 'Get API information',
-        description: 'Returns basic information about the API and available endpoints',
+        summary: "Get API information",
+        description:
+          "Returns basic information about the API and available endpoints",
         responses: {
-          '200': {
-            description: 'API information',
+          "200": {
+            description: "API information",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  type: 'object',
+                  type: "object",
                   properties: {
-                    message: { type: 'string', example: 'LiveScore Backend API' },
-                    version: { type: 'string', example: '1.0.0' },
+                    message: {
+                      type: "string",
+                      example: "LiveScore Backend API",
+                    },
+                    version: { type: "string", example: "1.0.0" },
                     endpoints: {
-                      type: 'object',
+                      type: "object",
                       properties: {
-                        match: { type: 'string', example: '/api/match/:id' },
-                        h2h: { type: 'string', example: '/api/h2h/:homeTeamId/:awayTeamId' },
-                        teamStats: { type: 'string', example: '/api/team/:id/stats' },
-                        teamOverview: { type: 'string', example: '/api/team/:id/overview' },
-                        teamMatches: { type: 'string', example: '/api/team/:id/matches' },
-                        standings: { type: 'string', example: '/api/league/:id/standings' },
-                        news: { type: 'string', example: '/api/news' }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+                        match: { type: "string", example: "/api/match/:id" },
+                        h2h: {
+                          type: "string",
+                          example: "/api/h2h/:homeTeamId/:awayTeamId",
+                        },
+                        teamStats: {
+                          type: "string",
+                          example: "/api/team/:id/stats",
+                        },
+                        teamOverview: {
+                          type: "string",
+                          example: "/api/team/:id/overview",
+                        },
+                        teamMatches: {
+                          type: "string",
+                          example: "/api/team/:id/matches",
+                        },
+                        standings: {
+                          type: "string",
+                          example: "/api/league/:id/standings",
+                        },
+                        news: { type: "string", example: "/api/news" },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/health': {
+    "/api/health": {
       get: {
-        summary: 'Health check',
-        description: 'Returns the health status of the API',
+        summary: "Health check",
+        description: "Returns the health status of the API",
         responses: {
-          '200': {
-            description: 'API is healthy',
+          "200": {
+            description: "API is healthy",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  type: 'object',
+                  type: "object",
                   properties: {
-                    status: { type: 'string', example: 'OK' },
-                    timestamp: { type: 'string', format: 'date-time' }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+                    status: { type: "string", example: "OK" },
+                    timestamp: { type: "string", format: "date-time" },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/match': {
+    "/api/match": {
       get: {
-        summary: 'Get all matches',
-        description: 'Retrieve a list of all matches with optional filtering',
+        summary: "Get all matches",
+        description: "Retrieve a list of all matches with optional filtering",
         parameters: [
           {
-            name: 'status',
-            in: 'query',
-            description: 'Filter matches by status',
+            name: "status",
+            in: "query",
+            description: "Filter matches by status",
             required: false,
             schema: {
-              type: 'string',
-              enum: ['FT', 'LIVE', 'SCH']
-            }
+              type: "string",
+              enum: ["FT", "LIVE", "SCH"],
+            },
           },
           {
-            name: 'leagueId',
-            in: 'query',
-            description: 'Filter matches by league ID',
+            name: "leagueId",
+            in: "query",
+            description: "Filter matches by league ID",
             required: false,
             schema: {
-              type: 'integer'
-            }
-          }
+              type: "integer",
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'List of matches',
+          "200": {
+            description: "List of matches",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/MatchListResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/MatchListResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/match/{id}': {
+    "/api/match/{id}": {
       get: {
-        summary: 'Get match by ID',
-        description: 'Retrieve detailed information about a specific match',
+        summary: "Get match by ID",
+        description: "Retrieve detailed information about a specific match",
         parameters: [
           {
-            name: 'id',
-            in: 'path',
+            name: "id",
+            in: "path",
             required: true,
-            description: 'Match ID',
+            description: "Match ID",
             schema: {
-              type: 'integer'
-            }
-          }
+              type: "integer",
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'Match details',
+          "200": {
+            description: "Match details",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/MatchResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/MatchResponse",
+                },
+              },
+            },
           },
-          '400': {
-            description: 'Invalid match ID',
+          "400": {
+            description: "Invalid match ID",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
           },
-          '404': {
-            description: 'Match not found',
+          "404": {
+            description: "Match not found",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/h2h/{homeTeamId}/{awayTeamId}': {
+    "/api/h2h/{homeTeamId}/{awayTeamId}": {
       get: {
-        summary: 'Get head-to-head data',
-        description: 'Retrieve historical matchup data between two teams',
+        summary: "Get head-to-head data",
+        description: "Retrieve historical matchup data between two teams",
         parameters: [
           {
-            name: 'homeTeamId',
-            in: 'path',
+            name: "homeTeamId",
+            in: "path",
             required: true,
-            description: 'Home team ID',
+            description: "Home team ID",
             schema: {
-              type: 'integer'
-            }
+              type: "integer",
+            },
           },
           {
-            name: 'awayTeamId',
-            in: 'path',
+            name: "awayTeamId",
+            in: "path",
             required: true,
-            description: 'Away team ID',
+            description: "Away team ID",
             schema: {
-              type: 'integer'
-            }
+              type: "integer",
+            },
           },
           {
-            name: 'limit',
-            in: 'query',
-            description: 'Limit number of matches returned',
+            name: "limit",
+            in: "query",
+            description: "Limit number of matches returned",
             required: false,
             schema: {
-              type: 'integer',
-              default: 10
-            }
-          }
+              type: "integer",
+              default: 10,
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'Head-to-head data',
+          "200": {
+            description: "Head-to-head data",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/H2HResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/H2HResponse",
+                },
+              },
+            },
           },
-          '400': {
-            description: 'Invalid team IDs',
+          "400": {
+            description: "Invalid team IDs",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/team/{id}/stats': {
+    "/api/team/{id}/stats": {
       get: {
-        summary: 'Get team statistics',
-        description: 'Retrieve comprehensive statistics for a team',
+        summary: "Get team statistics",
+        description: "Retrieve comprehensive statistics for a team",
         parameters: [
           {
-            name: 'id',
-            in: 'path',
+            name: "id",
+            in: "path",
             required: true,
-            description: 'Team ID',
+            description: "Team ID",
             schema: {
-              type: 'integer'
-            }
-          }
+              type: "integer",
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'Team statistics',
+          "200": {
+            description: "Team statistics",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/TeamStatsResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/TeamStatsResponse",
+                },
+              },
+            },
           },
-          '400': {
-            description: 'Invalid team ID',
+          "400": {
+            description: "Invalid team ID",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
           },
-          '404': {
-            description: 'Team statistics not found',
+          "404": {
+            description: "Team statistics not found",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/team/{id}/overview': {
+    "/api/team/{id}/overview": {
       get: {
-        summary: 'Get team overview',
-        description: 'Retrieve team overview with recent matches and form',
+        summary: "Get team overview",
+        description: "Retrieve team overview with recent matches and form",
         parameters: [
           {
-            name: 'id',
-            in: 'path',
+            name: "id",
+            in: "path",
             required: true,
-            description: 'Team ID',
+            description: "Team ID",
             schema: {
-              type: 'integer'
-            }
-          }
+              type: "integer",
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'Team overview',
+          "200": {
+            description: "Team overview",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/TeamOverviewResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/TeamOverviewResponse",
+                },
+              },
+            },
           },
-          '400': {
-            description: 'Invalid team ID',
+          "400": {
+            description: "Invalid team ID",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
           },
-          '404': {
-            description: 'Team not found',
+          "404": {
+            description: "Team not found",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/team/{id}/matches': {
+    "/api/team/{id}/matches": {
       get: {
-        summary: 'Get team matches',
-        description: 'Retrieve matches for a specific team',
+        summary: "Get team matches",
+        description: "Retrieve matches for a specific team",
         parameters: [
           {
-            name: 'id',
-            in: 'path',
+            name: "id",
+            in: "path",
             required: true,
-            description: 'Team ID',
+            description: "Team ID",
             schema: {
-              type: 'integer'
-            }
+              type: "integer",
+            },
           },
           {
-            name: 'status',
-            in: 'query',
-            description: 'Filter matches by status',
+            name: "status",
+            in: "query",
+            description: "Filter matches by status",
             required: false,
             schema: {
-              type: 'string',
-              enum: ['FT', 'LIVE', 'SCH']
-            }
+              type: "string",
+              enum: ["FT", "LIVE", "SCH"],
+            },
           },
           {
-            name: 'limit',
-            in: 'query',
-            description: 'Limit number of matches returned',
+            name: "limit",
+            in: "query",
+            description: "Limit number of matches returned",
             required: false,
             schema: {
-              type: 'integer',
-              default: 20
-            }
-          }
+              type: "integer",
+              default: 20,
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'Team matches',
+          "200": {
+            description: "Team matches",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/MatchListResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/MatchListResponse",
+                },
+              },
+            },
           },
-          '400': {
-            description: 'Invalid team ID',
+          "400": {
+            description: "Invalid team ID",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/league/{id}/standings': {
+    "/api/league/{id}/standings": {
       get: {
-        summary: 'Get league standings',
-        description: 'Retrieve league table and standings',
+        summary: "Get league standings",
+        description: "Retrieve league table and standings",
         parameters: [
           {
-            name: 'id',
-            in: 'path',
+            name: "id",
+            in: "path",
             required: true,
-            description: 'League ID',
+            description: "League ID",
             schema: {
-              type: 'integer'
-            }
-          }
+              type: "integer",
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'League standings',
+          "200": {
+            description: "League standings",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/StandingsResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/StandingsResponse",
+                },
+              },
+            },
           },
-          '400': {
-            description: 'Invalid league ID',
+          "400": {
+            description: "Invalid league ID",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/news': {
+    "/api/news": {
       get: {
-        summary: 'Get news list',
-        description: 'Retrieve latest football news',
+        summary: "Get news list",
+        description: "Retrieve latest football news",
         parameters: [
           {
-            name: 'limit',
-            in: 'query',
-            description: 'Limit number of news articles returned',
+            name: "limit",
+            in: "query",
+            description: "Limit number of news articles returned",
             required: false,
             schema: {
-              type: 'integer',
-              default: 10
-            }
+              type: "integer",
+              default: 10,
+            },
           },
           {
-            name: 'source',
-            in: 'query',
-            description: 'Filter news by source',
+            name: "source",
+            in: "query",
+            description: "Filter news by source",
             required: false,
             schema: {
-              type: 'string'
-            }
-          }
+              type: "string",
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'List of news articles',
+          "200": {
+            description: "List of news articles",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/NewsListResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/NewsListResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/news/{id}': {
+    "/api/news/{id}": {
       get: {
-        summary: 'Get news article by ID',
-        description: 'Retrieve a specific news article',
+        summary: "Get news article by ID",
+        description: "Retrieve a specific news article",
         parameters: [
           {
-            name: 'id',
-            in: 'path',
+            name: "id",
+            in: "path",
             required: true,
-            description: 'News article ID',
+            description: "News article ID",
             schema: {
-              type: 'integer'
-            }
-          }
+              type: "integer",
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'News article details',
+          "200": {
+            description: "News article details",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/NewsResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/NewsResponse",
+                },
+              },
+            },
           },
-          '400': {
-            description: 'Invalid news ID',
+          "400": {
+            description: "Invalid news ID",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
           },
-          '404': {
-            description: 'News article not found',
+          "404": {
+            description: "News article not found",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/ErrorResponse'
-                }
-              }
-            }
-          }
-        }
-      }
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
     },
-    '/api/news/latest': {
+    "/api/news/latest": {
       get: {
-        summary: 'Get latest news',
-        description: 'Retrieve the latest news headlines',
+        summary: "Get latest news",
+        description: "Retrieve the latest news headlines",
         parameters: [
           {
-            name: 'limit',
-            in: 'query',
-            description: 'Limit number of news articles returned',
+            name: "limit",
+            in: "query",
+            description: "Limit number of news articles returned",
             required: false,
             schema: {
-              type: 'integer',
-              default: 5
-            }
-          }
+              type: "integer",
+              default: 5,
+            },
+          },
         ],
         responses: {
-          '200': {
-            description: 'Latest news articles',
+          "200": {
+            description: "Latest news articles",
             content: {
-              'application/json': {
+              "application/json": {
                 schema: {
-                  $ref: '#/components/schemas/NewsListResponse'
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+                  $ref: "#/components/schemas/NewsListResponse",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   components: {
     schemas: {
       ErrorResponse: {
-        type: 'object',
+        type: "object",
         properties: {
           error: {
-            type: 'string',
-            example: 'Error message'
-          }
-        }
+            type: "string",
+            example: "Error message",
+          },
+        },
       },
       Team: {
-        type: 'object',
+        type: "object",
         properties: {
-          id: { type: 'integer', example: 1 },
-          name: { type: 'string', example: 'Manchester United' },
-          logo: { type: 'string', example: 'https://media.api-sports.io/football/teams/33.png' }
-        }
+          id: { type: "integer", example: 1 },
+          name: { type: "string", example: "Manchester United" },
+          logo: {
+            type: "string",
+            example: "https://media.api-sports.io/football/teams/33.png",
+          },
+        },
       },
       League: {
-        type: 'object',
+        type: "object",
         properties: {
-          id: { type: 'integer', example: 39 },
-          name: { type: 'string', example: 'Premier League' },
-          logo: { type: 'string', example: 'https://media.api-sports.io/football/leagues/39.png' }
-        }
+          id: { type: "integer", example: 39 },
+          name: { type: "string", example: "Premier League" },
+          logo: {
+            type: "string",
+            example: "https://media.api-sports.io/football/leagues/39.png",
+          },
+        },
       },
       Score: {
-        type: 'object',
+        type: "object",
         properties: {
-          home: { type: 'integer', nullable: true, example: 2 },
-          away: { type: 'integer', nullable: true, example: 1 }
-        }
+          home: { type: "integer", nullable: true, example: 2 },
+          away: { type: "integer", nullable: true, example: 1 },
+        },
       },
       Match: {
-        type: 'object',
+        type: "object",
         properties: {
-          id: { type: 'integer', example: 1 },
-          date: { type: 'string', format: 'date-time', example: '2024-08-15T15:00:00Z' },
-          status: { type: 'string', enum: ['FT', 'LIVE', 'SCH'], example: 'FT' },
-          homeTeam: { $ref: '#/components/schemas/Team' },
-          awayTeam: { $ref: '#/components/schemas/Team' },
-          score: { $ref: '#/components/schemas/Score' },
-          league: { $ref: '#/components/schemas/League' }
-        }
+          id: { type: "integer", example: 1 },
+          date: {
+            type: "string",
+            format: "date-time",
+            example: "2024-08-15T15:00:00Z",
+          },
+          status: {
+            type: "string",
+            enum: ["FT", "LIVE", "SCH"],
+            example: "FT",
+          },
+          homeTeam: { $ref: "#/components/schemas/Team" },
+          awayTeam: { $ref: "#/components/schemas/Team" },
+          score: { $ref: "#/components/schemas/Score" },
+          league: { $ref: "#/components/schemas/League" },
+        },
       },
       MatchResponse: {
-        type: 'object',
+        type: "object",
         properties: {
-          success: { type: 'boolean', example: true },
-          data: { $ref: '#/components/schemas/Match' }
-        }
+          success: { type: "boolean", example: true },
+          data: { $ref: "#/components/schemas/Match" },
+        },
       },
       MatchListResponse: {
-        type: 'object',
+        type: "object",
         properties: {
-          success: { type: 'boolean', example: true },
+          success: { type: "boolean", example: true },
           data: {
-            type: 'array',
-            items: { $ref: '#/components/schemas/Match' }
+            type: "array",
+            items: { $ref: "#/components/schemas/Match" },
           },
-          total: { type: 'integer', example: 10 }
-        }
+          total: { type: "integer", example: 10 },
+        },
       },
       H2HStats: {
-        type: 'object',
+        type: "object",
         properties: {
-          total: { type: 'integer', example: 10 },
-          homeWins: { type: 'integer', example: 4 },
-          awayWins: { type: 'integer', example: 3 },
-          draws: { type: 'integer', example: 3 }
-        }
+          total: { type: "integer", example: 10 },
+          homeWins: { type: "integer", example: 4 },
+          awayWins: { type: "integer", example: 3 },
+          draws: { type: "integer", example: 3 },
+        },
       },
       H2HResponse: {
-        type: 'object',
+        type: "object",
         properties: {
-          success: { type: 'boolean', example: true },
+          success: { type: "boolean", example: true },
           data: {
-            type: 'object',
+            type: "object",
             properties: {
               matches: {
-                type: 'array',
-                items: { $ref: '#/components/schemas/Match' }
+                type: "array",
+                items: { $ref: "#/components/schemas/Match" },
               },
-              stats: { $ref: '#/components/schemas/H2HStats' }
-            }
-          }
-        }
+              stats: { $ref: "#/components/schemas/H2HStats" },
+            },
+          },
+        },
       },
       TeamStats: {
-        type: 'object',
+        type: "object",
         properties: {
-          played: { type: 'integer', example: 38 },
-          wins: { type: 'integer', example: 22 },
-          draws: { type: 'integer', example: 8 },
-          losses: { type: 'integer', example: 8 },
-          goalsFor: { type: 'integer', example: 65 },
-          goalsAgainst: { type: 'integer', example: 45 },
-          points: { type: 'integer', example: 74 }
-        }
+          played: { type: "integer", example: 38 },
+          wins: { type: "integer", example: 22 },
+          draws: { type: "integer", example: 8 },
+          losses: { type: "integer", example: 8 },
+          goalsFor: { type: "integer", example: 65 },
+          goalsAgainst: { type: "integer", example: 45 },
+          points: { type: "integer", example: 74 },
+        },
       },
       TeamStatsResponse: {
-        type: 'object',
+        type: "object",
         properties: {
-          success: { type: 'boolean', example: true },
+          success: { type: "boolean", example: true },
           data: {
-            type: 'object',
+            type: "object",
             properties: {
-              team: { $ref: '#/components/schemas/Team' },
-              league: { $ref: '#/components/schemas/League' },
-              stats: { $ref: '#/components/schemas/TeamStats' }
-            }
-          }
-        }
+              team: { $ref: "#/components/schemas/Team" },
+              league: { $ref: "#/components/schemas/League" },
+              stats: { $ref: "#/components/schemas/TeamStats" },
+            },
+          },
+        },
       },
       TeamOverviewResponse: {
-        type: 'object',
+        type: "object",
         properties: {
-          success: { type: 'boolean', example: true },
+          success: { type: "boolean", example: true },
           data: {
-            type: 'object',
+            type: "object",
             properties: {
-              team: { $ref: '#/components/schemas/Team' },
-              stats: { $ref: '#/components/schemas/TeamStats' },
+              team: { $ref: "#/components/schemas/Team" },
+              stats: { $ref: "#/components/schemas/TeamStats" },
               recentMatches: {
-                type: 'array',
-                items: { $ref: '#/components/schemas/Match' }
+                type: "array",
+                items: { $ref: "#/components/schemas/Match" },
               },
               form: {
-                type: 'array',
-                items: { type: 'string', enum: ['W', 'L', 'D'] },
-                example: ['W', 'W', 'L', 'D', 'W']
-              }
-            }
-          }
-        }
+                type: "array",
+                items: { type: "string", enum: ["W", "L", "D"] },
+                example: ["W", "W", "L", "D", "W"],
+              },
+            },
+          },
+        },
       },
       Standing: {
-        type: 'object',
+        type: "object",
         properties: {
-          position: { type: 'integer', example: 1 },
-          team: { $ref: '#/components/schemas/Team' },
-          played: { type: 'integer', example: 38 },
-          wins: { type: 'integer', example: 26 },
-          draws: { type: 'integer', example: 6 },
-          losses: { type: 'integer', example: 6 },
-          goalsFor: { type: 'integer', example: 91 },
-          goalsAgainst: { type: 'integer', example: 29 },
-          goalDifference: { type: 'integer', example: 62 },
-          points: { type: 'integer', example: 84 }
-        }
+          position: { type: "integer", example: 1 },
+          team: { $ref: "#/components/schemas/Team" },
+          played: { type: "integer", example: 38 },
+          wins: { type: "integer", example: 26 },
+          draws: { type: "integer", example: 6 },
+          losses: { type: "integer", example: 6 },
+          goalsFor: { type: "integer", example: 91 },
+          goalsAgainst: { type: "integer", example: 29 },
+          goalDifference: { type: "integer", example: 62 },
+          points: { type: "integer", example: 84 },
+        },
       },
       StandingsResponse: {
-        type: 'object',
+        type: "object",
         properties: {
-          success: { type: 'boolean', example: true },
+          success: { type: "boolean", example: true },
           data: {
-            type: 'object',
+            type: "object",
             properties: {
-              league: { $ref: '#/components/schemas/League' },
+              league: { $ref: "#/components/schemas/League" },
               standings: {
-                type: 'array',
-                items: { $ref: '#/components/schemas/Standing' }
-              }
-            }
-          }
-        }
+                type: "array",
+                items: { $ref: "#/components/schemas/Standing" },
+              },
+            },
+          },
+        },
       },
       News: {
-        type: 'object',
+        type: "object",
         properties: {
-          id: { type: 'integer', example: 1 },
-          title: { type: 'string', example: 'Manchester United Sign New Midfielder' },
-          description: { type: 'string', example: 'The Red Devils have completed the signing...' },
-          content: { type: 'string', example: 'Manchester United have officially announced...' },
-          image: { type: 'string', example: 'https://example.com/images/news.jpg' },
-          publishedAt: { type: 'string', format: 'date-time', example: '2024-08-15T10:30:00Z' },
-          source: { type: 'string', example: 'ESPN' }
-        }
+          id: { type: "integer", example: 1 },
+          title: {
+            type: "string",
+            example: "Manchester United Sign New Midfielder",
+          },
+          description: {
+            type: "string",
+            example: "The Red Devils have completed the signing...",
+          },
+          content: {
+            type: "string",
+            example: "Manchester United have officially announced...",
+          },
+          image: {
+            type: "string",
+            example: "https://example.com/images/news.jpg",
+          },
+          publishedAt: {
+            type: "string",
+            format: "date-time",
+            example: "2024-08-15T10:30:00Z",
+          },
+          source: { type: "string", example: "ESPN" },
+        },
       },
       NewsResponse: {
-        type: 'object',
+        type: "object",
         properties: {
-          success: { type: 'boolean', example: true },
-          data: { $ref: '#/components/schemas/News' }
-        }
+          success: { type: "boolean", example: true },
+          data: { $ref: "#/components/schemas/News" },
+        },
       },
       NewsListResponse: {
-        type: 'object',
+        type: "object",
         properties: {
-          success: { type: 'boolean', example: true },
+          success: { type: "boolean", example: true },
           data: {
-            type: 'array',
-            items: { $ref: '#/components/schemas/News' }
+            type: "array",
+            items: { $ref: "#/components/schemas/News" },
           },
-          total: { type: 'integer', example: 5 }
-        }
-      }
-    }
-  }
+          total: { type: "integer", example: 5 },
+        },
+      },
+    },
+  },
 };
