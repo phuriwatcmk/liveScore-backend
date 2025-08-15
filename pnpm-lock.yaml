@@ -13,10 +13,10 @@ importers:
         version: 1.18.2(hono@4.9.1)
       '@hono/zod-openapi':
         specifier: ^1.1.0
-        version: 1.1.0(hono@4.9.1)(zod@4.0.17)
+        version: 1.1.0(hono@4.9.1)(zod@3.25.76)
       '@hono/zod-validator':
         specifier: ^0.7.2
-        version: 0.7.2(hono@4.9.1)(zod@4.0.17)
+        version: 0.7.2(hono@4.9.1)(zod@3.25.76)
       '@scalar/hono-api-reference':
         specifier: ^0.9.13
         version: 0.9.13(hono@4.9.1)
@@ -24,8 +24,8 @@ importers:
         specifier: ^4.9.1
         version: 4.9.1
       zod:
-        specifier: ^4.0.17
-        version: 4.0.17
+        specifier: ^3.25.76
+        version: 3.25.76
     devDependencies:
       '@types/node':
         specifier: ^20.11.0
@@ -1407,8 +1407,8 @@ packages:
   zod@3.24.1:
     resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
-  zod@4.0.17:
-    resolution: {integrity: sha512-1PHjlYRevNxxdy2JZ8JcNAw7rX8V9P1AKkP+x/xZfxB0K5FYfuV+Ug6P/6NVSR2jHQ+FzDDoDHS04nYUsOIyLQ==}
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
 snapshots:
 
@@ -1417,10 +1417,10 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.30
 
-  '@asteasolutions/zod-to-openapi@8.1.0(zod@4.0.17)':
+  '@asteasolutions/zod-to-openapi@8.1.0(zod@3.25.76)':
     dependencies:
       openapi3-ts: 4.5.0
-      zod: 4.0.17
+      zod: 3.25.76
 
   '@babel/helper-string-parser@7.27.1': {}
 
@@ -1611,18 +1611,18 @@ snapshots:
     dependencies:
       hono: 4.9.1
 
-  '@hono/zod-openapi@1.1.0(hono@4.9.1)(zod@4.0.17)':
+  '@hono/zod-openapi@1.1.0(hono@4.9.1)(zod@3.25.76)':
     dependencies:
-      '@asteasolutions/zod-to-openapi': 8.1.0(zod@4.0.17)
-      '@hono/zod-validator': 0.7.2(hono@4.9.1)(zod@4.0.17)
+      '@asteasolutions/zod-to-openapi': 8.1.0(zod@3.25.76)
+      '@hono/zod-validator': 0.7.2(hono@4.9.1)(zod@3.25.76)
       hono: 4.9.1
       openapi3-ts: 4.5.0
-      zod: 4.0.17
+      zod: 3.25.76
 
-  '@hono/zod-validator@0.7.2(hono@4.9.1)(zod@4.0.17)':
+  '@hono/zod-validator@0.7.2(hono@4.9.1)(zod@3.25.76)':
     dependencies:
       hono: 4.9.1
-      zod: 4.0.17
+      zod: 3.25.76
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
@@ -2660,4 +2660,4 @@ snapshots:
 
   zod@3.24.1: {}
 
-  zod@4.0.17: {}
+  zod@3.25.76: {}
