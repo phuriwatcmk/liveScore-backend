@@ -4,13 +4,13 @@ import {
   mockTeamFixturesStats,
   mockStandingsByLeague,
   mockFixturesToday,
-} from "../data/mockData.js";
+} from "../data/mockData";
 import {
   createSuccessResponse,
   createErrorResponse,
   paginate,
-} from "../utils/response.js";
-import { teamParamsSchema, paginationSchema } from "../validators/index.js";
+} from "../utils/response";
+import { teamParamsSchema, paginationSchema } from "../validators/index";
 
 const teams = new Hono();
 

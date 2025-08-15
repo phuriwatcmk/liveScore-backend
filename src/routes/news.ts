@@ -1,12 +1,12 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import { mockNews } from "../data/mockData.js";
+import { mockNews } from "../data/mockData";
 import {
   createSuccessResponse,
   createErrorResponse,
   paginate,
-} from "../utils/response.js";
-import { newsQuerySchema } from "../validators/index.js";
+} from "../utils/response";
+import { newsQuerySchema } from "../validators/index";
 import { z } from "@hono/zod-openapi";
 
 const news = new Hono();

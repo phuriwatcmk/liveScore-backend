@@ -1,11 +1,11 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import { mockLeagues, mockStandingsByLeague } from "../data/mockData.js";
+import { mockLeagues, mockStandingsByLeague } from "../data/mockData";
 import {
   createSuccessResponse,
   createErrorResponse,
-} from "../utils/response.js";
-import { leagueParamsSchema, paginationSchema } from "../validators/index.js";
+} from "../utils/response";
+import { leagueParamsSchema, paginationSchema } from "../validators/index";
 
 const leagues = new Hono();
 

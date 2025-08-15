@@ -1,12 +1,12 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import { mockH2HWithFixtures } from "../data/mockData.js";
+import { mockH2HWithFixtures } from "../data/mockData";
 import {
   createSuccessResponse,
   createErrorResponse,
   paginate,
-} from "../utils/response.js";
-import { h2hParamsSchema, paginationSchema } from "../validators/index.js";
+} from "../utils/response";
+import { h2hParamsSchema, paginationSchema } from "../validators/index";
 
 const h2h = new Hono();
 

@@ -1,15 +1,15 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import { mockFixturesToday, mockStats } from "../data/mockData.js";
+import { mockFixturesToday, mockStats } from "../data/mockData";
 import {
   createSuccessResponse,
   createErrorResponse,
   paginate,
-} from "../utils/response.js";
+} from "../utils/response";
 import {
   fixtureParamsSchema,
   fixturesQuerySchema,
-} from "../validators/index.js";
+} from "../validators/index";
 
 const fixtures = new Hono();
 

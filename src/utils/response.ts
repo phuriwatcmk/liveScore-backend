@@ -1,4 +1,4 @@
-import type { ApiResponse, ErrorResponse } from "../types/index.js";
+import type { ApiResponse, ErrorResponse } from "../types/index";
 
 export function createSuccessResponse<T>(
   data: T,

@@ -5,7 +5,7 @@ import type {
   LeagueTeamStats,
   H2HMatch,
   News,
-} from "../types/index.js";
+} from "../types/index";
 
 export const mockLeagues: Array<{ league: League; country: { name: string } }> =
   [
