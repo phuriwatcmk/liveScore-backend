@@ -1,13 +1,13 @@
 import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
-import { mockLeagues, mockStandingsByLeague } from "../data/mockData.js";
-import { createSuccessResponse, createErrorResponse, } from "../utils/response.js";
-import { leagueParamsSchema, paginationSchema } from "../validators/index.js";
+import { mockLeagues, mockStandingsByLeague } from "../data/mockData";
+import { createSuccessResponse, createErrorResponse, } from "../utils/response";
 const leagues = new Hono();
 // GET /leagues - Get all leagues
-leagues.get("/", zValidator("query", paginationSchema), (c) => {
+leagues.get("/", (c) => {
     try {
-        const { page, limit } = c.req.valid("query");
+        const query = c.req.query();
+        const page = query.page ? parseInt(query.page, 10) : 1;
+        const limit = query.limit ? parseInt(query.limit, 10) : 10;
         const startIndex = (page - 1) * limit;
         const endIndex = startIndex + limit;
         const paginatedLeagues = mockLeagues.slice(startIndex, endIndex);
@@ -23,9 +23,9 @@ leagues.get("/", zValidator("query", paginationSchema), (c) => {
     }
 });
 // GET /leagues/:leagueId - Get specific league
-leagues.get("/:leagueId", zValidator("param", leagueParamsSchema), (c) => {
+leagues.get("/:leagueId", (c) => {
     try {
-        const { leagueId } = c.req.valid("param");
+        const leagueId = parseInt(c.req.param("leagueId"), 10);
         const league = mockLeagues.find((l) => l.league.id === leagueId);
         if (!league) {
             return c.json(createErrorResponse("NOT_FOUND", `League with ID ${leagueId} not found`), 404);
@@ -37,9 +37,9 @@ leagues.get("/:leagueId", zValidator("param", leagueParamsSchema), (c) => {
     }
 });
 // GET /leagues/:leagueId/standings - Get league standings
-leagues.get("/:leagueId/standings", zValidator("param", leagueParamsSchema), (c) => {
+leagues.get("/:leagueId/standings", (c) => {
     try {
-        const { leagueId } = c.req.valid("param");
+        const leagueId = parseInt(c.req.param("leagueId"), 10);
         const leagueStandings = mockStandingsByLeague.find((standing) => standing.league.id === leagueId);
         const standings = leagueStandings?.standings;
         if (!standings) {

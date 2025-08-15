@@ -1,13 +1,16 @@
 import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
-import { mockFixturesToday, mockStats } from "../data/mockData.js";
-import { createSuccessResponse, createErrorResponse, paginate, } from "../utils/response.js";
-import { fixtureParamsSchema, fixturesQuerySchema, } from "../validators/index.js";
+import { mockFixturesToday, mockStats } from "../data/mockData";
+import { createSuccessResponse, createErrorResponse, paginate, } from "../utils/response";
 const fixtures = new Hono();
 // GET /fixtures - Get fixtures with filters
-fixtures.get("/", zValidator("query", fixturesQuerySchema), (c) => {
+fixtures.get("/", (c) => {
     try {
-        const { page, limit, date, league, status } = c.req.valid("query");
+        const query = c.req.query();
+        const page = query.page ? parseInt(query.page, 10) : 1;
+        const limit = query.limit ? parseInt(query.limit, 10) : 10;
+        const date = query.date;
+        const league = query.league ? parseInt(query.league, 10) : undefined;
+        const status = query.status;
         let filteredFixtures = [...mockFixturesToday];
         // Filter by date
         if (date) {
@@ -30,9 +33,11 @@ fixtures.get("/", zValidator("query", fixturesQuerySchema), (c) => {
     }
 });
 // GET /fixtures/today - Get today's fixtures
-fixtures.get("/today", zValidator("query", fixturesQuerySchema), (c) => {
+fixtures.get("/today", (c) => {
     try {
-        const { page, limit } = c.req.valid("query");
+        const query = c.req.query();
+        const page = query.page ? parseInt(query.page, 10) : 1;
+        const limit = query.limit ? parseInt(query.limit, 10) : 10;
         const today = new Date().toDateString();
         const todayFixtures = mockFixturesToday.filter((fixture) => new Date(fixture.fixture.date).toDateString() === today);
         const { data, pagination } = paginate(todayFixtures, page, limit);
@@ -43,9 +48,11 @@ fixtures.get("/today", zValidator("query", fixturesQuerySchema), (c) => {
     }
 });
 // GET /fixtures/live - Get live fixtures
-fixtures.get("/live", zValidator("query", fixturesQuerySchema), (c) => {
+fixtures.get("/live", (c) => {
     try {
-        const { page, limit } = c.req.valid("query");
+        const query = c.req.query();
+        const page = query.page ? parseInt(query.page, 10) : 1;
+        const limit = query.limit ? parseInt(query.limit, 10) : 10;
         const liveFixtures = mockFixturesToday.filter((fixture) => fixture.fixture.status.short === "LIVE");
         const { data, pagination } = paginate(liveFixtures, page, limit);
         return c.json(createSuccessResponse(data, "Live fixtures retrieved successfully", pagination));
@@ -55,9 +62,9 @@ fixtures.get("/live", zValidator("query", fixturesQuerySchema), (c) => {
     }
 });
 // GET /fixtures/:fixtureId - Get specific fixture
-fixtures.get("/:fixtureId", zValidator("param", fixtureParamsSchema), (c) => {
+fixtures.get("/:fixtureId", (c) => {
     try {
-        const { fixtureId } = c.req.valid("param");
+        const fixtureId = parseInt(c.req.param("fixtureId"), 10);
         const fixture = mockFixturesToday.find((f) => f.fixture.id === fixtureId);
         if (!fixture) {
             return c.json(createErrorResponse("NOT_FOUND", `Fixture with ID ${fixtureId} not found`), 404);
@@ -69,9 +76,9 @@ fixtures.get("/:fixtureId", zValidator("param", fixtureParamsSchema), (c) => {
     }
 });
 // GET /fixtures/:fixtureId/stats - Get fixture statistics
-fixtures.get("/:fixtureId/stats", zValidator("param", fixtureParamsSchema), (c) => {
+fixtures.get("/:fixtureId/stats", (c) => {
     try {
-        const { fixtureId } = c.req.valid("param");
+        const fixtureId = parseInt(c.req.param("fixtureId"), 10);
         const stats = mockStats.find((s) => s.fixture.id === fixtureId);
         if (!stats) {
             return c.json(createErrorResponse("NOT_FOUND", `Statistics for fixture ${fixtureId} not found`), 404);

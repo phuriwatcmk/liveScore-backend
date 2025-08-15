@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import app from "../index.js";
+import app from "../index";
 describe("News API", () => {
     describe("GET /api/v1/news", () => {
         it("should return news with pagination", async () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import app from "../index.js";
+import app from "../index";
 describe("Head-to-Head API", () => {
     describe("GET /api/v1/h2h/:team1Id/:team2Id", () => {
         it("should return head-to-head records with statistics", async () => {

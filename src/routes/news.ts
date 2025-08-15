@@ -1,24 +1,22 @@
 import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
 import { mockNews } from "../data/mockData";
 import {
   createSuccessResponse,
   createErrorResponse,
   paginate,
 } from "../utils/response";
-import { newsQuerySchema } from "../validators/index";
-import { z } from "@hono/zod-openapi";
 
 const news = new Hono();
 
-const newsIdSchema = z.object({
-  newsId: z.string().transform((val) => parseInt(val, 10)),
-});
-
 // GET /news - Get news with filters
-news.get("/", zValidator("query", newsQuerySchema), (c) => {
+news.get("/", (c) => {
   try {
-    const { page, limit, category, tags, search } = c.req.valid("query");
+    const query = c.req.query();
+    const page = query.page ? parseInt(query.page, 10) : 1;
+    const limit = query.limit ? parseInt(query.limit, 10) : 10;
+    const category = query.category;
+    const tags = query.tags;
+    const search = query.search;
 
     let filteredNews = [...mockNews];
 
@@ -109,9 +107,11 @@ news.get("/tags", (c) => {
 });
 
 // GET /news/trending - Get trending news (most viewed)
-news.get("/trending", zValidator("query", newsQuerySchema), (c) => {
+news.get("/trending", (c) => {
   try {
-    const { page, limit } = c.req.valid("query");
+    const query = c.req.query();
+    const page = query.page ? parseInt(query.page, 10) : 1;
+    const limit = query.limit ? parseInt(query.limit, 10) : 10;
 
     // Sort by views (descending)
     const trendingNews = [...mockNews].sort((a, b) => b.views - a.views);
@@ -134,9 +134,9 @@ news.get("/trending", zValidator("query", newsQuerySchema), (c) => {
 });
 
 // GET /news/:newsId - Get specific news article
-news.get("/:newsId", zValidator("param", newsIdSchema), (c) => {
+news.get("/:newsId", (c) => {
   try {
-    const { newsId } = c.req.valid("param");
+    const newsId = parseInt(c.req.param("newsId"), 10);
 
     const article = mockNews.find((n) => n.id === newsId);
 
@@ -171,9 +171,9 @@ news.get("/:newsId", zValidator("param", newsIdSchema), (c) => {
 });
 
 // GET /news/:newsId/related - Get related news articles
-news.get("/:newsId/related", zValidator("param", newsIdSchema), (c) => {
+news.get("/:newsId/related", (c) => {
   try {
-    const { newsId } = c.req.valid("param");
+    const newsId = parseInt(c.req.param("newsId"), 10);
 
     const article = mockNews.find((n) => n.id === newsId);
 

@@ -1,14 +1,15 @@
 import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
-import { mockH2HWithFixtures } from "../data/mockData.js";
-import { createSuccessResponse, createErrorResponse, paginate, } from "../utils/response.js";
-import { h2hParamsSchema, paginationSchema } from "../validators/index.js";
+import { mockH2HWithFixtures } from "../data/mockData";
+import { createSuccessResponse, createErrorResponse, paginate, } from "../utils/response";
 const h2h = new Hono();
 // GET /h2h/:team1Id/:team2Id - Get head-to-head records between two teams
-h2h.get("/:team1Id/:team2Id", zValidator("param", h2hParamsSchema), zValidator("query", paginationSchema), (c) => {
+h2h.get("/:team1Id/:team2Id", (c) => {
     try {
-        const { team1Id, team2Id } = c.req.valid("param");
-        const { page, limit } = c.req.valid("query");
+        const team1Id = parseInt(c.req.param("team1Id"), 10);
+        const team2Id = parseInt(c.req.param("team2Id"), 10);
+        const query = c.req.query();
+        const page = query.page ? parseInt(query.page, 10) : 1;
+        const limit = query.limit ? parseInt(query.limit, 10) : 10;
         // Find H2H records between the two teams
         const h2hRecords = mockH2HWithFixtures.filter((record) => {
             const homeId = record.teams.home.id;
@@ -81,9 +82,10 @@ h2h.get("/:team1Id/:team2Id", zValidator("param", h2hParamsSchema), zValidator("
     }
 });
 // GET /h2h/:team1Id/:team2Id/recent - Get recent matches between two teams
-h2h.get("/:team1Id/:team2Id/recent", zValidator("param", h2hParamsSchema), (c) => {
+h2h.get("/:team1Id/:team2Id/recent", (c) => {
     try {
-        const { team1Id, team2Id } = c.req.valid("param");
+        const team1Id = parseInt(c.req.param("team1Id"), 10);
+        const team2Id = parseInt(c.req.param("team2Id"), 10);
         // Find recent H2H records (limit to 5 most recent)
         const h2hRecords = mockH2HWithFixtures.filter((record) => {
             const homeId = record.teams.home.id;

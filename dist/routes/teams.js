@@ -1,13 +1,11 @@
 import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
-import { mockTeamFixturesStats, mockStandingsByLeague, mockFixturesToday, } from "../data/mockData.js";
-import { createSuccessResponse, createErrorResponse, paginate, } from "../utils/response.js";
-import { teamParamsSchema, paginationSchema } from "../validators/index.js";
+import { mockTeamFixturesStats, mockStandingsByLeague, mockFixturesToday, } from "../data/mockData";
+import { createSuccessResponse, createErrorResponse, paginate, } from "../utils/response";
 const teams = new Hono();
 // GET /teams/:teamId - Get team overview
-teams.get("/:teamId", zValidator("param", teamParamsSchema), (c) => {
+teams.get("/:teamId", (c) => {
     try {
-        const { teamId } = c.req.valid("param");
+        const teamId = parseInt(c.req.param("teamId"), 10);
         // Find team in fixture stats
         let teamData = null;
         for (const leagueStats of mockTeamFixturesStats) {
@@ -31,10 +29,12 @@ teams.get("/:teamId", zValidator("param", teamParamsSchema), (c) => {
     }
 });
 // GET /teams/:teamId/matches - Get team matches
-teams.get("/:teamId/matches", zValidator("param", teamParamsSchema), zValidator("query", paginationSchema), (c) => {
+teams.get("/:teamId/matches", (c) => {
     try {
-        const { teamId } = c.req.valid("param");
-        const { page, limit } = c.req.valid("query");
+        const teamId = parseInt(c.req.param("teamId"), 10);
+        const query = c.req.query();
+        const page = query.page ? parseInt(query.page, 10) : 1;
+        const limit = query.limit ? parseInt(query.limit, 10) : 10;
         // Find matches where team is playing
         const teamMatches = mockFixturesToday.filter((fixture) => fixture.teams.home.id === teamId || fixture.teams.away.id === teamId);
         if (teamMatches.length === 0) {
@@ -48,9 +48,9 @@ teams.get("/:teamId/matches", zValidator("param", teamParamsSchema), zValidator(
     }
 });
 // GET /teams/:teamId/standings - Get team standings in their league
-teams.get("/:teamId/standings", zValidator("param", teamParamsSchema), (c) => {
+teams.get("/:teamId/standings", (c) => {
     try {
-        const { teamId } = c.req.valid("param");
+        const teamId = parseInt(c.req.param("teamId"), 10);
         // Find team's league first
         let teamLeagueId = null;
         for (const leagueStats of mockTeamFixturesStats) {
@@ -81,9 +81,9 @@ teams.get("/:teamId/standings", zValidator("param", teamParamsSchema), (c) => {
     }
 });
 // GET /teams/:teamId/statistics - Get team statistics
-teams.get("/:teamId/statistics", zValidator("param", teamParamsSchema), (c) => {
+teams.get("/:teamId/statistics", (c) => {
     try {
-        const { teamId } = c.req.valid("param");
+        const teamId = parseInt(c.req.param("teamId"), 10);
         // Find team data
         let teamStats = null;
         for (const leagueStats of mockTeamFixturesStats) {

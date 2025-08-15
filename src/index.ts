@@ -4,7 +4,7 @@ import { prettyJSON } from "hono/pretty-json";
 import { serve } from "@hono/node-server";
 import { Scalar } from "@scalar/hono-api-reference";
 
-import { corsMiddleware } from "./middleware/cors";
+import { corsMiddleware } from "./middleware/cors.js";
 import { createSuccessResponse, createErrorResponse } from "./utils/response";
 
 // Import routes

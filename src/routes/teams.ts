@@ -1,5 +1,4 @@
 import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
 import {
   mockTeamFixturesStats,
   mockStandingsByLeague,
@@ -10,14 +9,13 @@ import {
   createErrorResponse,
   paginate,
 } from "../utils/response";
-import { teamParamsSchema, paginationSchema } from "../validators/index";
 
 const teams = new Hono();
 
 // GET /teams/:teamId - Get team overview
-teams.get("/:teamId", zValidator("param", teamParamsSchema), (c) => {
+teams.get("/:teamId", (c) => {
   try {
-    const { teamId } = c.req.valid("param");
+    const teamId = parseInt(c.req.param("teamId"), 10);
 
     // Find team in fixture stats
     let teamData = null;
@@ -54,12 +52,12 @@ teams.get("/:teamId", zValidator("param", teamParamsSchema), (c) => {
 // GET /teams/:teamId/matches - Get team matches
 teams.get(
   "/:teamId/matches",
-  zValidator("param", teamParamsSchema),
-  zValidator("query", paginationSchema),
   (c) => {
     try {
-      const { teamId } = c.req.valid("param");
-      const { page, limit } = c.req.valid("query");
+      const teamId = parseInt(c.req.param("teamId"), 10);
+      const query = c.req.query();
+      const page = query.page ? parseInt(query.page, 10) : 1;
+      const limit = query.limit ? parseInt(query.limit, 10) : 10;
 
       // Find matches where team is playing
       const teamMatches = mockFixturesToday.filter(
@@ -99,12 +97,12 @@ teams.get(
 );
 
 // GET /teams/:teamId/standings - Get team standings in their league
-teams.get("/:teamId/standings", zValidator("param", teamParamsSchema), (c) => {
+teams.get("/:teamId/standings", (c) => {
   try {
-    const { teamId } = c.req.valid("param");
+    const teamId = parseInt(c.req.param("teamId"), 10);
 
     // Find team's league first
-    let teamLeagueId = null;
+    let teamLeagueId: number | null = null;
     for (const leagueStats of mockTeamFixturesStats) {
       const team = leagueStats.team.find((t) => t.id === teamId);
       if (team) {
@@ -160,9 +158,9 @@ teams.get("/:teamId/standings", zValidator("param", teamParamsSchema), (c) => {
 });
 
 // GET /teams/:teamId/statistics - Get team statistics
-teams.get("/:teamId/statistics", zValidator("param", teamParamsSchema), (c) => {
+teams.get("/:teamId/statistics", (c) => {
   try {
-    const { teamId } = c.req.valid("param");
+    const teamId = parseInt(c.req.param("teamId"), 10);
 
     // Find team data
     let teamStats = null;

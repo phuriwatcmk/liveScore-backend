@@ -2,6 +2,7 @@
   "name": "livescore-backend",
   "version": "1.0.0",
   "description": "Live Score Backend API with Hono",
+  "type": "module",
   "main": "src/index.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
@@ -14,11 +15,8 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.18.2",
-    "@hono/zod-openapi": "^1.1.0",
-    "@hono/zod-validator": "^0.7.2",
     "@scalar/hono-api-reference": "^0.9.13",
-    "hono": "^4.9.1",
-    "zod": "^3.25.76"
+    "hono": "^4.9.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
