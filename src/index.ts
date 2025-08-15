@@ -51,10 +51,15 @@ app.route("/api/v1/h2h", h2h);
 app.route("/api/v1/news", news);
 
 // API Documentation
-app.get("/docs", Scalar({ 
-  url: "/doc",
-  theme: "purple"
-}));
+app.get(
+  "/docs",
+  Scalar({
+    theme: "purple",
+    spec: {
+      url: "/openapi.json",
+    },
+  })
+);
 
 // OpenAPI spec endpoint
 app.get("/openapi.json", (c) => {
