@@ -16,6 +16,7 @@ export interface Team {
 
 export interface Match {
   id: number;
+  fixture_id?: number;
   date: string;
   status: string;
   homeTeam: Team;
