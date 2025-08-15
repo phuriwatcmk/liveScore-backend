@@ -2,13 +2,10 @@ import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { prettyJSON } from "hono/pretty-json";
 import { serve } from "@hono/node-server";
-import { apiReference } from "@scalar/hono-api-reference";
+import { Scalar } from "@scalar/hono-api-reference";
 
 import { corsMiddleware } from "./middleware/cors";
-import {
-  createSuccessResponse,
-  createErrorResponse,
-} from "./utils/response";
+import { createSuccessResponse, createErrorResponse } from "./utils/response";
 
 // Import routes
 import leagues from "./routes/leagues";
@@ -54,15 +51,10 @@ app.route("/api/v1/h2h", h2h);
 app.route("/api/v1/news", news);
 
 // API Documentation
-app.get(
-  "/docs",
-  apiReference({
-    theme: "purple",
-    spec: {
-      url: "/openapi.json",
-    },
-  })
-);
+app.get("/docs", Scalar({ 
+  url: "/doc",
+  theme: "purple"
+}));
 
 // OpenAPI spec endpoint
 app.get("/openapi.json", (c) => {
