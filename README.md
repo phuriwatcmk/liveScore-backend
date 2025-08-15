@@ -54,6 +54,19 @@ The server will start on `http://localhost:3000`
 npm run build
 \`\`\`
 
+### Testing
+
+\`\`\`bash
+# Run tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+\`\`\`
+
 ## Deployment
 
 ### Vercel Deployment
