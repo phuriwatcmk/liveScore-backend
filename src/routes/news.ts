@@ -7,7 +7,7 @@ import {
   paginate,
 } from "../utils/response.js";
 import { newsQuerySchema } from "../validators/index.js";
-import { z } from "zod";
+import { z } from "@hono/zod-openapi";
 
 const news = new Hono();
 
