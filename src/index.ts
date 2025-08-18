@@ -5,6 +5,7 @@ import { swaggerSpec } from './swagger.js';
 import matchRoutes from './routes/match.js';
 import h2hRoutes from './routes/h2h.js';
 import teamRoutes from './routes/team.js';
+import leagueRoutes from './routes/league.js';
 import newsRoutes from './routes/news.js';
 
 const app = new Hono();
@@ -33,6 +34,8 @@ app.get('/', (c) => {
       teamStats: '/api/team/:id/stats',
       teamOverview: '/api/team/:id/overview',
       teamMatches: '/api/team/:id/matches',
+      leagues: '/api/league',
+      league: '/api/league/:id',
       standings: '/api/league/:id/standings',
       news: '/api/news'
     }
@@ -42,7 +45,7 @@ app.get('/', (c) => {
 app.route('/api/match', matchRoutes);
 app.route('/api/h2h', h2hRoutes);
 app.route('/api/team', teamRoutes);
-app.route('/api/league', teamRoutes);
+app.route('/api/league', leagueRoutes);
 app.route('/api/news', newsRoutes);
 
 app.get('/api/health', (c) => {
