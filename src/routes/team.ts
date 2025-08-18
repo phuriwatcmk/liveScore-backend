@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import type { TeamStatistics, Standing, Match, Team } from '../types/index.js';
+import { mockLeagues } from '../mock-data.js';
 
 const teamRoutes = new Hono();
 
@@ -140,12 +141,18 @@ teamRoutes.get('/:id/standings', (c) => {
     return c.json({ error: 'Invalid league ID' }, 400);
   }
 
+  const league = mockLeagues.find(l => l.league.id === leagueId);
+  
+  if (!league) {
+    return c.json({ error: 'League not found' }, 404);
+  }
+
   const standings = mockStandings.sort((a, b) => a.position - b.position);
 
   return c.json({
     success: true,
     data: {
-      league: { id: 39, name: 'Premier League', logo: 'https://media.api-sports.io/football/leagues/39.png' },
+      league: league.league,
       standings
     }
   });
