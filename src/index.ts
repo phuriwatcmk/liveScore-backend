@@ -10,7 +10,7 @@ import newsRoutes from './routes/news.js';
 const app = new Hono();
 
 app.use('*', cors({
-  origin: ['http://localhost:3000', 'https://your-frontend-domain.vercel.app'],
+  origin: '*',
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowHeaders: ['Content-Type', 'Authorization'],
 }));
