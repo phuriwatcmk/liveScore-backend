@@ -61,7 +61,7 @@ export const swaggerSpec = {
                         },
                         standings: {
                           type: "string",
-                          example: "/api/league/:id/standings",
+                          example: "/api/team/:id/standings",
                         },
                         leagues: { type: "string", example: "/api/league" },
                         league: { type: "string", example: "/api/league/:id" },
