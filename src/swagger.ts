@@ -392,6 +392,45 @@ export const swaggerSpec = {
         },
       },
     },
+    "/api/team/{id}/standings": {
+      get: {
+        summary: "Get league standings",
+        description: "Retrieve team league table and standings",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            required: true,
+            description: "League and team ID",
+            schema: {
+              type: "integer",
+            },
+          },
+        ],
+        responses: {
+          "200": {
+            description: "Team League standings",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/StandingsResponse",
+                },
+              },
+            },
+          },
+          "400": {
+            description: "Invalid league ID",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     "/api/league": {
       get: {
         summary: "Get all leagues",
@@ -459,45 +498,7 @@ export const swaggerSpec = {
         },
       },
     },
-    "/api/league/{id}/standings": {
-      get: {
-        summary: "Get league standings",
-        description: "Retrieve league table and standings",
-        parameters: [
-          {
-            name: "id",
-            in: "path",
-            required: true,
-            description: "League ID",
-            schema: {
-              type: "integer",
-            },
-          },
-        ],
-        responses: {
-          "200": {
-            description: "League standings",
-            content: {
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/StandingsResponse",
-                },
-              },
-            },
-          },
-          "400": {
-            description: "Invalid league ID",
-            content: {
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/ErrorResponse",
-                },
-              },
-            },
-          },
-        },
-      },
-    },
+
     "/api/news": {
       get: {
         summary: "Get news list",
