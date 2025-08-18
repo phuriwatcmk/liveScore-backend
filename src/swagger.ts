@@ -63,6 +63,8 @@ export const swaggerSpec = {
                           type: "string",
                           example: "/api/league/:id/standings",
                         },
+                        leagues: { type: "string", example: "/api/league" },
+                        league: { type: "string", example: "/api/league/:id" },
                         news: { type: "string", example: "/api/news" },
                       },
                     },
@@ -379,6 +381,73 @@ export const swaggerSpec = {
           },
           "400": {
             description: "Invalid team ID",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    "/api/league": {
+      get: {
+        summary: "Get all leagues",
+        description: "Retrieve a list of all available leagues",
+        responses: {
+          "200": {
+            description: "List of leagues",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/LeagueListResponse",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    "/api/league/{id}": {
+      get: {
+        summary: "Get league by ID",
+        description: "Retrieve detailed information about a specific league",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            required: true,
+            description: "League ID",
+            schema: {
+              type: "integer",
+            },
+          },
+        ],
+        responses: {
+          "200": {
+            description: "League details",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/LeagueResponse",
+                },
+              },
+            },
+          },
+          "400": {
+            description: "Invalid league ID",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ErrorResponse",
+                },
+              },
+            },
+          },
+          "404": {
+            description: "League not found",
             content: {
               "application/json": {
                 schema: {
@@ -773,6 +842,24 @@ export const swaggerSpec = {
           data: {
             type: "array",
             items: { $ref: "#/components/schemas/News" },
+          },
+          total: { type: "integer", example: 5 },
+        },
+      },
+      LeagueResponse: {
+        type: "object",
+        properties: {
+          success: { type: "boolean", example: true },
+          data: { $ref: "#/components/schemas/League" },
+        },
+      },
+      LeagueListResponse: {
+        type: "object",
+        properties: {
+          success: { type: "boolean", example: true },
+          data: {
+            type: "array",
+            items: { $ref: "#/components/schemas/League" },
           },
           total: { type: "integer", example: 5 },
         },
