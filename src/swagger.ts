@@ -662,7 +662,7 @@ export const swaggerSpec = {
         type: "object",
         properties: {
           id: { type: "integer", example: 1 },
-          fixture_id: { type: "integer", example: 1001 },
+          fixtureId: { type: "integer", example: 1001 },
           date: {
             type: "string",
             format: "date-time",

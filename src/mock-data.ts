@@ -11217,7 +11217,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1001,
+        fixtureId: 1001,
         date: "2025-03-15T15:00:00+00:00",
         venue: "Etihad Stadium",
         home: "Man City",
@@ -11272,7 +11272,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1002,
+        fixtureId: 1002,
         date: "2025-03-15T15:00:00+00:00",
         venue: "Anfield",
         home: "Liverpool",
@@ -11327,7 +11327,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1003,
+        fixtureId: 1003,
         date: "2024-09-12T19:30:00+00:00",
         venue: "Stamford Bridge",
         home: "Chelsea",
@@ -11371,7 +11371,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1004,
+        fixtureId: 1004,
         date: "2024-06-15T16:00:00+00:00",
         venue: "Tottenham Hotspur Stadium",
         home: "Tottenham",
@@ -11409,7 +11409,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1005,
+        fixtureId: 1005,
         date: "2023-02-01T18:30:00+00:00",
         venue: "Amex Stadium",
         home: "Brighton",
@@ -11453,7 +11453,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1006,
+        fixtureId: 1006,
         date: "2023-02-01T18:30:00+00:00",
         venue: "Selhurst Park",
         home: "Crystal Palace",
@@ -11502,7 +11502,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1007,
+        fixtureId: 1007,
         date: "2023-02-01T18:30:00+00:00",
         venue: "Molineux Stadium",
         home: "Wolves",
@@ -11536,7 +11536,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1008,
+        fixtureId: 1008,
         date: "2023-02-01T18:30:00+00:00",
         venue: "Villa Park",
         home: "Aston Villa",
@@ -11585,7 +11585,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1009,
+        fixtureId: 1009,
         date: "2023-02-01T18:30:00+00:00",
         venue: "Molineux Stadium",
         home: "Wolves",
@@ -11629,7 +11629,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1010,
+        fixtureId: 1010,
         date: "2023-02-01T18:30:00+00:00",
         venue: "King Power Stadium",
         home: "Leicester",
@@ -11678,7 +11678,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1011,
+        fixtureId: 1011,
         date: "2023-02-01T18:30:00+00:00",
         venue: "Craven Cottage",
         home: "Fulham",
@@ -11727,7 +11727,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 1012,
+        fixtureId: 1012,
         date: "2023-02-01T18:30:00+00:00",
         venue: "Vitality Stadium",
         home: "Bournemouth",
@@ -11771,7 +11771,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2001,
+        fixtureId: 2001,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Santiago Bernabéu",
         home: "Real Madrid",
@@ -11816,7 +11816,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2002,
+        fixtureId: 2002,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Metropolitano Stadium",
         home: "Atletico Madrid",
@@ -11865,7 +11865,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2003,
+        fixtureId: 2003,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Mestalla",
         home: "Valencia",
@@ -11914,7 +11914,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2004,
+        fixtureId: 2004,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Benito Villamarín",
         home: "Real Betis",
@@ -11957,7 +11957,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2005,
+        fixtureId: 2005,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Balaídos",
         home: "Celta Vigo",
@@ -12000,7 +12000,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2006,
+        fixtureId: 2006,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Visit Mallorca Estadi",
         home: "Mallorca",
@@ -12044,7 +12044,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2007,
+        fixtureId: 2007,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Nuevo Los Cármenes",
         home: "Granada",
@@ -12077,7 +12077,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2008,
+        fixtureId: 2008,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Nuevo Mirandilla",
         home: "Cadiz",
@@ -12115,7 +12115,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2009,
+        fixtureId: 2009,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Estadio Martínez Valero",
         home: "Elche",
@@ -12152,7 +12152,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2010,
+        fixtureId: 2010,
         date: "2025-05-10T20:00:00+00:00",
         venue: "Nuevo Los Cármenes",
         home: "Granada",
@@ -12192,7 +12192,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2011,
+        fixtureId: 2011,
         date: "2025-05-10T20:00:00+00:00",
         venue: "RCDE Stadium",
         home: "Espanyol",
@@ -12241,7 +12241,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 2012,
+        fixtureId: 2012,
         date: "2025-05-10T20:00:00+00:00",
         venue: "RCDE Stadium",
         home: "Espanyol",
@@ -12291,7 +12291,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3001,
+        fixtureId: 3001,
         date: "2025-03-02T18:45:00+00:00",
         venue: "San Siro",
         home: "Inter Milan",
@@ -12340,7 +12340,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3002,
+        fixtureId: 3002,
         date: "2025-03-02T18:45:00+00:00",
         venue: "San Siro",
         home: "AC Milan",
@@ -12378,7 +12378,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3003,
+        fixtureId: 3003,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Stadio Olimpico",
         home: "Roma",
@@ -12411,7 +12411,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3004,
+        fixtureId: 3004,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Artemio Franchi",
         home: "Fiorentina",
@@ -12466,7 +12466,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3005,
+        fixtureId: 3005,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Dacia Arena",
         home: "Udinese",
@@ -12510,7 +12510,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3006,
+        fixtureId: 3006,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Stadio Carlo Castellani",
         home: "Empoli",
@@ -12542,7 +12542,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3007,
+        fixtureId: 3007,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Stadio Arechi",
         home: "Salernitana",
@@ -12581,7 +12581,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3008,
+        fixtureId: 3008,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Gewiss Stadium",
         home: "Atalanta",
@@ -12637,7 +12637,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3009,
+        fixtureId: 3009,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Stadio Olimpico Grande Torino",
         home: "Torino",
@@ -12674,7 +12674,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3010,
+        fixtureId: 3010,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Dacia Arena",
         home: "Udinese",
@@ -12717,7 +12717,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3011,
+        fixtureId: 3011,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Stadio Luigi Ferraris",
         home: "Sampdoria",
@@ -12755,7 +12755,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3012,
+        fixtureId: 3012,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Stadio Carlo Castellani",
         home: "Empoli",
@@ -12789,7 +12789,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3013,
+        fixtureId: 3013,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Stadio Alberto Picco",
         home: "Spezia",
@@ -12827,7 +12827,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 3014,
+        fixtureId: 3014,
         date: "2025-03-02T18:45:00+00:00",
         venue: "Unipol Domus",
         home: "Cagliari",
@@ -12870,7 +12870,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4001,
+        fixtureId: 4001,
         date: "2025-04-18T18:30:00+00:00",
         venue: "Allianz Arena",
         home: "Bayern Munich",
@@ -12937,7 +12937,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4002,
+        fixtureId: 4002,
         date: "2025-04-18T18:30:00+00:00",
         venue: "Red Bull Arena",
         home: "RB Leipzig",
@@ -12992,7 +12992,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4003,
+        fixtureId: 4003,
         date: "2025-04-18T18:30:00+00:00",
         venue: "Deutsche Bank Park",
         home: "Eintracht Frankfurt",
@@ -13041,7 +13041,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4004,
+        fixtureId: 4004,
         date: "2025-04-18T18:30:00+00:00",
         venue: "Europa-Park Stadion",
         home: "Freiburg",
@@ -13085,7 +13085,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4005,
+        fixtureId: 4005,
         date: "2025-04-18T18:30:00+00:00",
         venue: "WWK Arena",
         home: "Augsburg",
@@ -13128,7 +13128,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4006,
+        fixtureId: 4006,
         date: "2025-04-18T18:30:00+00:00",
         venue: "Mercedes-Benz Arena",
         home: "Stuttgart",
@@ -13171,7 +13171,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4007,
+        fixtureId: 4007,
         date: "2025-04-18T18:30:00+00:00",
         venue: "Weserstadion",
         home: "Werder Bremen",
@@ -13226,7 +13226,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4008,
+        fixtureId: 4008,
         date: "2025-04-18T18:30:00+00:00",
         venue: "Volkswagen Arena",
         home: "VfL Wolfsburg",
@@ -13275,7 +13275,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4009,
+        fixtureId: 4009,
         date: "2025-04-18T18:30:00+00:00",
         venue: "PreZero Arena",
         home: "TSG Hoffenheim",
@@ -13324,7 +13324,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4010,
+        fixtureId: 4010,
         date: "2025-04-18T18:30:00+00:00",
         venue: "Stadion An der Alten Försterei",
         home: "Union Berlin",
@@ -13367,7 +13367,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 4011,
+        fixtureId: 4011,
         date: "2025-04-18T18:30:00+00:00",
         venue: "MEWA ARENA",
         home: "Mainz 05",
@@ -13416,7 +13416,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5001,
+        fixtureId: 5001,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Parc des Princes",
         home: "PSG",
@@ -13449,7 +13449,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5002,
+        fixtureId: 5002,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Groupama Stadium",
         home: "Lyon",
@@ -13493,7 +13493,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5003,
+        fixtureId: 5003,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade Pierre-Mauroy",
         home: "Lille",
@@ -13532,7 +13532,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5004,
+        fixtureId: 5004,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Allianz Riviera",
         home: "Nice",
@@ -13566,7 +13566,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5005,
+        fixtureId: 5005,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stadium de Toulouse",
         home: "Toulouse",
@@ -13603,7 +13603,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5006,
+        fixtureId: 5006,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade de la Meinau",
         home: "Strasbourg",
@@ -13648,7 +13648,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5007,
+        fixtureId: 5007,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade Gabriel Montpied",
         home: "Clermont",
@@ -13691,7 +13691,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5008,
+        fixtureId: 5008,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade de la Meinau",
         home: "Strasbourg",
@@ -13734,7 +13734,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5009,
+        fixtureId: 5009,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade Bollaert-Delelis",
         home: "Lens",
@@ -13769,7 +13769,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5010,
+        fixtureId: 5010,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade Geoffroy-Guichard",
         home: "Saint-Etienne",
@@ -13808,7 +13808,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5011,
+        fixtureId: 5011,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade Raymond Kopa",
         home: "Angers",
@@ -13846,7 +13846,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5012,
+        fixtureId: 5012,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade de l'Aube",
         home: "Troyes",
@@ -13886,7 +13886,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5013,
+        fixtureId: 5013,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade Francis-Le Blé",
         home: "Brest",
@@ -13923,7 +13923,7 @@ export const mockH2HWithFixtures = [
     },
     fixtures: [
       {
-        fixture_id: 5014,
+        fixtureId: 5014,
         date: "2025-04-12T18:00:00+00:00",
         venue: "Stade Saint-Symphorien",
         home: "Metz",

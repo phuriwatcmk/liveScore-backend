@@ -6,7 +6,7 @@ const h2hRoutes = new Hono();
 const mockH2HMatches: Match[] = [
   {
     id: 101,
-    fixture_id: 1001,
+    fixtureId: 1001,
     date: '2024-03-17T16:30:00Z',
     status: 'FT',
     homeTeam: {
@@ -31,7 +31,7 @@ const mockH2HMatches: Match[] = [
   },
   {
     id: 102,
-    fixture_id: 1002,
+    fixtureId: 1002,
     date: '2023-12-17T17:30:00Z',
     status: 'FT',
     homeTeam: {
@@ -56,7 +56,7 @@ const mockH2HMatches: Match[] = [
   },
   {
     id: 103,
-    fixture_id: 1003,
+    fixtureId: 1003,
     date: '2023-08-28T16:30:00Z',
     status: 'FT',
     homeTeam: {
@@ -81,7 +81,7 @@ const mockH2HMatches: Match[] = [
   },
   {
     id: 104,
-    fixture_id: 1004,
+    fixtureId: 1004,
     date: '2023-04-02T16:30:00Z',
     status: 'FT',
     homeTeam: {
@@ -106,7 +106,7 @@ const mockH2HMatches: Match[] = [
   },
   {
     id: 105,
-    fixture_id: 1005,
+    fixtureId: 1005,
     date: '2022-08-22T20:00:00Z',
     status: 'FT',
     homeTeam: {
@@ -138,7 +138,7 @@ h2hRoutes.get('/fixture/:fixture_id', (c) => {
     return c.json({ error: 'Invalid fixture ID' }, 400);
   }
 
-  const match = mockH2HMatches.find(m => m.fixture_id === fixtureId);
+  const match = mockH2HMatches.find(m => m.fixtureId === fixtureId);
 
   if (!match) {
     return c.json({ error: 'Match not found' }, 404);
