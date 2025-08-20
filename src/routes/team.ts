@@ -213,7 +213,7 @@ teamRoutes.get("/:id/standings", (c) => {
     return c.json({ error: "League standings not found" }, 404);
   }
 
-  const standings = leagueStanding.stats.sort((a, b) => a.rank - b.rank);
+  const standings = leagueStanding.stats.sort((a, b) => a.position - b.position);
 
   return c.json({
     success: true,
